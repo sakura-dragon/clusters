@@ -38,4 +38,4 @@ spec:
   resources:
     requests:
       storage: 100Gi
-  VolumeName: minio-data-2
+  volumeName: minio-data-2
