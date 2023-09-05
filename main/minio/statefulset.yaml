@@ -38,10 +38,10 @@ spec:
             runAsUser: 1001
             runAsNonRoot: true
           envFrom:
-            - secretRef:
+            - configMapRef:
                 name: minio-vars
-            - secretRef:
-                name: minio-secrets
+            # - secretRef:
+            #     name: minio-vars
           ports:
             - name: minio-api
               containerPort: 9000
