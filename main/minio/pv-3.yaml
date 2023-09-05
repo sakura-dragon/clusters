@@ -38,6 +38,4 @@ spec:
   resources:
     requests:
       storage: 100Gi
-  selector:
-    matchLabels:
-      minio: data-3
+  VolumeName: minio-data-3
