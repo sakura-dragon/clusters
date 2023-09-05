@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minio
+  labels:
+    app: minio
+spec:
+  selector:
+    matchLabels:
+      app: minio
+  serviceName: minio
+  replicas: 4
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      automountServiceAccountToken: false
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - minio
+            topologyKey: kubernetes.io/hostname
+      securityContext:
+        fsGroup: 1001
+      containers:
+        - name: minio
+          image: minio
+          securityContext:
+            runAsUser: 1001
+            runAsNonRoot: true
+          envFrom:
+            - secretRef:
+                name: minio-vars
+            - secretRef:
+                name: minio-secrets
+          ports:
+            - name: minio-api
+              containerPort: 9000
+              protocol: TCP
+            - name: minio-console
+              containerPort: 9001
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /minio/health/live
+              port: minio-api
+              scheme: "HTTP"
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            tcpSocket:
+              port: minio-api
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 5
+          startupProbe:
+            tcpSocket:
+              port: minio-api
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 60
+          resources:
+            request:
+              cpu: 100m
+              memory: 500Mi
+          volumeMounts:
+            - name: data
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        storageClassName: minio
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: "100Gi"
