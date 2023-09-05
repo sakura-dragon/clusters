@@ -33,7 +33,7 @@ spec:
         fsGroup: 1001
       containers:
         - name: minio
-          image: minio
+          image: minio/minio:latest
           securityContext:
             runAsUser: 1001
             runAsNonRoot: true
@@ -85,9 +85,9 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: data
-        storageClassName: minio
       spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
             storage: "100Gi"
+        storageClassName: minio

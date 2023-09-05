@@ -27,10 +27,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minio-data-2
+  name: data-minio-2
   labels:
     app: minio
 spec:
+  storageClassName: minio
   accessModes:
     - ReadWriteOnce
   resources:
