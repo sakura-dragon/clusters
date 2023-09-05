@@ -16,8 +16,7 @@ spec:
       targetPort: minio-console
   publishNotReadyAddresses: true
   selector:
-    matchLabels:
-      app: minio
+    app: minio
 ---
 apiVersion: v1
 kind: Service
@@ -36,5 +35,4 @@ spec:
       port: 9001
       targetPort: minio-console
   selector:
-    matchLabels:
-      app: minio
+    app: minio
