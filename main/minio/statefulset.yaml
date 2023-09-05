@@ -34,6 +34,9 @@ spec:
       containers:
         - name: minio
           image: minio/minio:latest
+          args:
+            - server
+            - /data
           securityContext:
             runAsUser: 1001
             runAsNonRoot: true
