@@ -4,12 +4,12 @@ namespace: minio
 resources:
   - ns.yaml
   - sc.yaml
-  - pv-0.yaml
-  - pv-1.yaml
-  - pv-2.yaml
-  - pv-3.yaml
+  # - pv-0.yaml
+  # - pv-1.yaml
+  # - pv-2.yaml
+  # - pv-3.yaml
   - svc.yaml
-  - statefulset.yaml
+  # - statefulset.yaml
 configMapGenerator:
 - name: minio-vars
   files:
