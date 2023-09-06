@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: minio
-  serviceName: minio
+  serviceName: minio-headless
   replicas: 4
   podManagementPolicy: Parallel
   updateStrategy:
