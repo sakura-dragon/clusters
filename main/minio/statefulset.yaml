@@ -36,8 +36,8 @@ spec:
           image: minio/minio:latest
           args:
             - server
-            - $MINIO_OPTS
-            - $MINIO_VOLUMES
+            - --console-address :9001
+            - http://minio-{0...3}.minio-headless:9000/data
           securityContext:
             runAsUser: 1001
             runAsNonRoot: true
