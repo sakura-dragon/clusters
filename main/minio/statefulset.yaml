@@ -36,7 +36,8 @@ spec:
           image: minio/minio:latest
           args:
             - server
-            - /data
+            - $MINIO_OPTS
+            - $MINIO_VOLUMES
           securityContext:
             runAsUser: 1001
             runAsNonRoot: true
