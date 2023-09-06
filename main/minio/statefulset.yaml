@@ -38,7 +38,7 @@ spec:
             - server
             - --console-address
             - :9001
-            - http://minio-{0...3}.minio-headless.minio.svc:9000/data
+            - http://minio-{0...3}.minio-headless.minio.svc.cluster.local:9000/data
           securityContext:
             runAsUser: 1001
             runAsNonRoot: true
