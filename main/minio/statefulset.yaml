@@ -36,7 +36,8 @@ spec:
           image: minio/minio:latest
           args:
             - server
-            - --console-address :9001
+            - --console-address
+            - :9001
             - http://minio-{0...3}.minio-headless:9000/data
           securityContext:
             runAsUser: 1001
