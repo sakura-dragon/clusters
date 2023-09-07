@@ -16,5 +16,6 @@ spec:
   targetNamespace: istio-system
   install:
     createNamespace: true
-  values:
-    installCRDs: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
