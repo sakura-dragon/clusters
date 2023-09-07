@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: istio-ingress
+spec:
+  interval: 30m
+  dependsOn:
+    - name: istio-base
+    - name: istiod
+  chart:
+    spec:
+      chart: gateway
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+      interval: 12h
+  targetNamespace: istio-system
+  install:
+    createNamespace: true
+  values:
+    installCRDs: true
