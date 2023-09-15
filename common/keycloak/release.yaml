@@ -22,9 +22,9 @@ spec:
     postgresql:
       enabled: false
     externalDatabase:
-      existingSecret: "keycloak-pguser"
-      existingSecretHostKey: ""
-      existingSecretPortKey: ""
-      existingSecretUserKey: ""
-      existingSecretDatabaseKey: ""
-      existingSecretPasswordKey: ""
+      existingSecret: keycloak-pguser-keycloak
+      existingSecretHostKey: host
+      existingSecretPortKey: port
+      existingSecretUserKey: user
+      existingSecretDatabaseKey: dbname
+      existingSecretPasswordKey: password
