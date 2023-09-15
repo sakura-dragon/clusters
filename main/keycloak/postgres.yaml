@@ -6,11 +6,10 @@ metadata:
 spec:
   image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-15.4-0
   postgresVersion: 15
-  spec:
-    users:
-      - name: keycloak
-        databases:
-          - keycloak
+  users:
+    - name: keycloak
+      databases:
+        - keycloak
   instances:
     - name: instance1
       dataVolumeClaimSpec:
