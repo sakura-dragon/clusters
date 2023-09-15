@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: pg-operator
+  namespace: flux-system
+spec:
+  interval: 1h
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./common/postgres/operator
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: pg-cluster
+  namespace: flux-system
+spec:
+  interval: 1h
+  dependsOn:
+    - name: pg-operator
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./common/postgres/cluster
+  prune: true
