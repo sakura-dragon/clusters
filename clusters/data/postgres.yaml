@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./common/postgres/operator
+  path: ./apps/postgres/operator
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -24,5 +24,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./common/postgres/cluster
+  path: ./apps/postgres/cluster
   prune: true
