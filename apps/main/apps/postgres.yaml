@@ -1,8 +1,7 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: keycloak
-  namespace: keycloak
+  name: apps
 spec:
   image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-15.4-0
   postgresVersion: 15
@@ -10,6 +9,9 @@ spec:
     - name: keycloak
       databases:
         - keycloak
+    - name: vaultwarden
+      databases:
+        - vaultwarden
   instances:
     - name: instance1
       dataVolumeClaimSpec:
