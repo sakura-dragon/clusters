@@ -6,12 +6,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
-  dependsOn:
-    - name: base
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./common/openebs
   prune: true
   dependsOn:
-    - base
+    - name: base

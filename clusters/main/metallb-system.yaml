@@ -16,4 +16,4 @@ spec:
       - kind: Secret
         name: cluster-vars
   dependsOn:
-    - base
+    - name: base

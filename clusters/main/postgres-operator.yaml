@@ -12,4 +12,4 @@ spec:
   path: ./common/postgres-operator
   prune: true
   dependsOn:
-    - base
+    - name: base

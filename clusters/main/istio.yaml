@@ -12,4 +12,4 @@ spec:
   path: ./common/istio
   prune: true
   dependsOn:
-    - base
+    - name: base
