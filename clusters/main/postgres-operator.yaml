@@ -2,12 +2,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: base
+  name: pg-operator
   namespace: flux-system
 spec:
   interval: 1h
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./common/base
+  path: ./common/postgres-operator
   prune: true
+  dependsOn:
+    - base

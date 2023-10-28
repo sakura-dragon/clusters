@@ -9,5 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./apps/istio
+  path: ./common/istio
   prune: true
+  dependsOn:
+    - base
