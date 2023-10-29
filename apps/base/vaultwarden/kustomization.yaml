@@ -4,5 +4,4 @@ resources:
   - configmap.yaml
   - deployment.yaml
   - service.yaml
-  - istio-ingress.yaml
-  - tls.yaml
+  - istio-virtual-service.yaml
