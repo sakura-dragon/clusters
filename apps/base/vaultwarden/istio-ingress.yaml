@@ -1,0 +1,52 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: vaultwarden
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - vault.${PUBLIC_DOMAIN}
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+  - hosts:
+    - vault.${PUBLIC_DOMAIN}
+    port:
+      name: https-443
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: vaultwarden-tls
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vaultwarden
+spec:
+  hosts:
+  - vault.${PUBLIC_DOMAIN}
+  gateways:
+  - vaultwarden-gateway
+  http:
+  - match:
+    - uri:
+        exact: /notifications/hub
+    route:
+    - destination:
+        port:
+          number: 3012
+        host: vaultwarden-ws
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: vaultwarden

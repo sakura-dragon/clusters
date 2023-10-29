@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vaultwarden
+spec:
+  commonName: "vault.${PUBLIC_DOMAIN}"
+  dnsNames:
+  - "vault.${PUBLIC_DOMAIN}"
+  issuerRef:
+    kind: ClusterIssuer
+    name: cloudflare
+  secretName: vaultwarden-tls

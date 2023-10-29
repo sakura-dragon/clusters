@@ -29,6 +29,14 @@ data:
   PUBLIC_DOMAIN: $(echo "$PUBLIC_DOMAIN" | base64 --wrap=0)
   PRIVATE_DOMAIN: $(echo "$PUBLIC_DOMAIN" | base64 --wrap=0)
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-vars
+  namespace: flux-system
+data:
+  PUBLIC_DOMAIN: $(echo "$PUBLIC_DOMAIN" | base64 --wrap=0)
+---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
