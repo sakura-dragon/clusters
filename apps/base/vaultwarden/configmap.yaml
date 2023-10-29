@@ -5,7 +5,7 @@ metadata:
   name: vaultwarden
   labels:
     app: vaultwarden
-data: 
+data:
   WEBSOCKET_ENABLED: 'true'
   # Where to store persistent data
   # Data is stored in postgres, so this is just for ephemeral storage

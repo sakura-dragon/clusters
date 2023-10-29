@@ -32,7 +32,7 @@ spec:
   hosts:
   - vault.${PUBLIC_DOMAIN}
   gateways:
-  - vaultwarden-gateway
+  - vaultwarden
   http:
   - match:
     - uri:
@@ -41,7 +41,7 @@ spec:
     - destination:
         port:
           number: 3012
-        host: vaultwarden-ws
+        host: vaultwarden
   - match:
     - uri:
         prefix: /
