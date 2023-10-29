@@ -14,4 +14,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: apps-pguser-vaultwarden
-              key: jdbc-uri
+              key: uri
