@@ -7,6 +7,13 @@ metadata:
     app: vaultwarden
 data: 
   WEBSOCKET_ENABLED: 'true'
+  # Where to store persistent data
+  # Data is stored in postgres, so this is just for ephemeral storage
+  # Mostly used for rsa keys, TODO: generate them so we don't need persistence
+  DATA_FOLDER: '/data'
+  # As mentioned, we're enforcing persistence via the DB only
+  USER_ATTACHMENT_LIMIT: '0'
+  ORG_ATTACHMENT_LIMIT: '0'
   # What domain is vaultwarden going to be hosted on
   # This needs to reflect setting in ingress otherwise some 2FA methods might not work
   DOMAIN: 'https://vault.${PUBLIC_DOMAIN}'

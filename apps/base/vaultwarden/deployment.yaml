@@ -33,6 +33,9 @@ spec:
         - containerPort: 3012
           name: websocket
           protocol: TCP
+        volumeMounts:
+        - mountPath: /data
+          name: data
         resources:
           limits:
             cpu: 300m
@@ -40,3 +43,7 @@ spec:
           requests:
             cpu: 50m
             memory: 256Mi
+      volumes:
+      - name: data
+        emptyDir:
+          sizeLimit: 500Mi
