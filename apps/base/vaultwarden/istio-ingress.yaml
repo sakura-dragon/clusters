@@ -4,7 +4,7 @@ metadata:
   name: vaultwarden
 spec:
   selector:
-    istio: ingressgateway
+    istio: system-istio-ingress
   servers:
   - hosts:
     - vault.${PUBLIC_DOMAIN}
