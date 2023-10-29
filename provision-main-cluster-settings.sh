@@ -9,7 +9,7 @@ metadata:
   name: cloudflared
   namespace: cloudflared
 data:
-  tunnel-token: $(echo "$CLOUDFLARED_TOKEN" | base64 --wrap=0)
+  tunnel-token: $(printf "$CLOUDFLARED_TOKEN" | base64 --wrap=0)
 ---
 apiVersion: v1
 kind: Secret
@@ -17,7 +17,7 @@ metadata:
   name: cloudflare-api-token
   namespace: cert-manager
 data:
-  api-token: $(echo "$CLOUDFLARE_API_TOKEN" | base64 --wrap=0)
+  api-token: $(printf "$CLOUDFLARE_API_TOKEN" | base64 --wrap=0)
 ---
 apiVersion: v1
 kind: Secret
@@ -25,9 +25,9 @@ metadata:
   name: cluster-vars
   namespace: flux-system
 data:
-  LOAD_BALANCER_IP_POOL: $(echo "$LOAD_BALANCER_IP_POOL" | base64 --wrap=0)
-  PUBLIC_DOMAIN: $(echo "$PUBLIC_DOMAIN" | base64 --wrap=0)
-  PRIVATE_DOMAIN: $(echo "$PUBLIC_DOMAIN" | base64 --wrap=0)
+  LOAD_BALANCER_IP_POOL: $(printf "$LOAD_BALANCER_IP_POOL" | base64 --wrap=0)
+  PUBLIC_DOMAIN: $(printf "$PUBLIC_DOMAIN" | base64 --wrap=0)
+  PRIVATE_DOMAIN: $(printf "$PUBLIC_DOMAIN" | base64 --wrap=0)
 ---
 apiVersion: v1
 kind: Secret
@@ -35,7 +35,7 @@ metadata:
   name: app-vars
   namespace: flux-system
 data:
-  PUBLIC_DOMAIN: $(echo "$PUBLIC_DOMAIN" | base64 --wrap=0)
+  PUBLIC_DOMAIN: $(printf "$PUBLIC_DOMAIN" | base64 --wrap=0)
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
