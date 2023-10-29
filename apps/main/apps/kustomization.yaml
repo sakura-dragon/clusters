@@ -3,8 +3,11 @@ kind: Kustomization
 namespace: apps
 resources:
   - ns.yaml
+  - istio-gateway.yaml
+  - tls.yaml
   - postgres.yaml
   # - keycloak.yaml
   - ../../base/vaultwarden
 patchesStrategicMerge:
-  - vaultwarden-patch.yaml
+  - vaultwarden-patches/deployment.yaml
+  - vaultwarden-patches/virtual-service.yaml
