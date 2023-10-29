@@ -7,5 +7,4 @@ resources:
   # - keycloak.yaml
   - ../../base/vaultwarden
 patchesStrategicMerge:
-  - vaultwarden-deployment-patch.yaml
-  - vaultwarden-tls-patch.yaml
+  - vaultwarden-patch.yaml
