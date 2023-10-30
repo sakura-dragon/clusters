@@ -4,7 +4,6 @@ metadata:
   name: vaultwarden
 spec:
   hosts:
-  - vaultwarden.internal
   - vault.${PUBLIC_DOMAIN}
   gateways:
   - apps-ingress
