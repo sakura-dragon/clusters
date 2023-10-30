@@ -5,6 +5,7 @@ metadata:
 spec:
   hosts:
   - vaultwarden.istio
+  - vaultwarden.apps.svc
   - vault.${PUBLIC_DOMAIN}
   gateways:
   - apps-ingress
