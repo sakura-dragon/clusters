@@ -14,7 +14,6 @@ spec:
     metadata:
       labels:
         app: vaultwarden
-        sidecar.istio.io/inject: "true"
     spec:
       automountServiceAccountToken: false
       securityContext:
@@ -35,7 +34,7 @@ spec:
           name: http
           protocol: TCP
         - containerPort: 3012
-          name: websocket
+          name: http-websocket
           protocol: TCP
         volumeMounts:
         - mountPath: /data
