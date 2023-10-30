@@ -9,11 +9,12 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      pod: cloudflared
+      app: cloudflared
   template:
     metadata:
       labels:
-        pod: cloudflared
+        app: cloudflared
+        sidecar.istio.io/inject: "true"
     spec:
       containers:
       - command:
