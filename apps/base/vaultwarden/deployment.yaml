@@ -21,7 +21,7 @@ spec:
         runAsUser: 1001
       containers:
       - image: vaultwarden/server:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: vaultwarden
         envFrom:
         - configMapRef:
