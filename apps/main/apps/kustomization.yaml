@@ -4,8 +4,10 @@ namespace: apps
 resources:
   - ns.yaml
   - postgres.yaml
-  # - keycloak.yaml
+  - ../../base/keycloak
   - ../../base/vaultwarden
 patchesStrategicMerge:
+  - keycloak-patches/release.yaml
+  - keycloak-patches/virtual-service.yaml
   - vaultwarden-patches/deployment.yaml
   - vaultwarden-patches/virtual-service.yaml

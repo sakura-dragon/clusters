@@ -7,21 +7,18 @@ spec:
   chart:
     spec:
       chart: keycloak
-      version: 16.1.5
+      version: 16.x.x
       sourceRef:
         kind: HelmRepository
         name: bitnami
       interval: 12h
-  targetNamespace: keycloak
-  install:
-    createNamespace: true
   values:
     production: true
     proxy: edge
     postgresql:
       enabled: false
     externalDatabase:
-      existingSecret: keycloak-pguser-keycloak
+      existingSecret: xxxxx-pguser-keycloak
       existingSecretHostKey: host
       existingSecretPortKey: port
       existingSecretUserKey: user

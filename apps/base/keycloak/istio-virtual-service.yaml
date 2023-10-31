@@ -1,0 +1,17 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: keycloak
+spec:
+  hosts: []
+  gateways: []
+  http:
+  - match:
+    - uri:
+        exact: /auth
+    route:
+    - destination:
+        port:
+          number: 80
+        host: apps-keycloak-keycloak
