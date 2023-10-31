@@ -13,3 +13,13 @@ spec:
   prune: true
   dependsOn:
     - name: base
+  patches:
+    - patch: |-
+        spec:
+          values:
+            meshConfig:
+              numTrustedProxies: 1
+      target:
+        kind: HelmRelease
+        name: istiod
+        namespace: flux-system
