@@ -19,7 +19,7 @@ spec:
   - hosts:
     - vault.${PUBLIC_DOMAIN}
     port:
-      name: https-443
+      name: https-vault
       number: 443
       protocol: HTTPS
     tls:
@@ -28,7 +28,7 @@ spec:
   - hosts:
     - login.${PUBLIC_DOMAIN}
     port:
-      name: https-443
+      name: https-login
       number: 443
       protocol: HTTPS
     tls:
