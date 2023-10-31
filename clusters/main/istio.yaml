@@ -22,4 +22,6 @@ spec:
         spec:
           values:
             meshConfig:
-              numTrustedProxies: 1
+              defaultConfig:
+                gatewayTopology:
+                  numTrustedProxies: 1
