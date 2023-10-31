@@ -14,8 +14,8 @@ spec:
         namespace: default
       interval: 12h
   values:
-    # production: true
-    # proxy: edge
+    production: true
+    proxy: edge
     postgresql:
       enabled: false
     externalDatabase:
