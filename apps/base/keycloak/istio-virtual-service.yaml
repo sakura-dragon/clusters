@@ -9,7 +9,7 @@ spec:
   http:
   - match:
     - uri:
-        exact: /auth
+        exact: /
     route:
     - destination:
         port:
