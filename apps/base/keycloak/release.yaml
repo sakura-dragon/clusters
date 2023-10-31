@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: keycloak
-      version: 15.x.x
+      version: 17.x.x
       sourceRef:
         kind: HelmRepository
         name: bitnami
