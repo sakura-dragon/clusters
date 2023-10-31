@@ -9,6 +9,7 @@ spec:
   servers:
   - hosts:
     - vault.${PUBLIC_DOMAIN}
+    - login.${PUBLIC_DOMAIN}
     port:
       number: 80
       name: http
@@ -24,3 +25,12 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: vaultwarden-tls
+  - hosts:
+    - login.${PUBLIC_DOMAIN}
+    port:
+      name: https-443
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: keycloak-tls

@@ -12,3 +12,17 @@ spec:
     kind: ClusterIssuer
     name: cloudflare
   secretName: vaultwarden-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: keycloak
+  namespace: istio-system
+spec:
+  commonName: "login.${PUBLIC_DOMAIN}"
+  dnsNames:
+  - "login.${PUBLIC_DOMAIN}"
+  issuerRef:
+    kind: ClusterIssuer
+    name: cloudflare
+  secretName: keycloak-tls
