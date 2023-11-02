@@ -1,0 +1,47 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki-stack
+spec:
+  interval: 30m
+  dependsOn:
+    - name: kube-prometheus-stack
+  chart:
+    spec:
+      version: "2.x"
+      chart: loki-stack
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+      interval: 12h
+  targetNamespace: monitoring
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  # https://github.com/grafana/helm-charts/blob/main/charts/loki-stack/values.yaml
+  # https://github.com/grafana/helm-charts/blob/main/charts/loki/values.yaml
+  # https://grafana.com/docs/loki/latest/installation/helm/install-monolithic/
+  values:
+    grafana:
+      enabled: false
+    promtail:
+      enabled: true
+    loki:
+      enabled: true
+      isDefault: false
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          app.kubernetes.io/part-of: kube-prometheus-stack
+      config:
+        chunk_store_config:
+          max_look_back_period: 0s
+        table_manager:
+          retention_deletes_enabled: true
+          retention_period: 12h
+      persistence:
+        enabled: true
+        size: 5Gi

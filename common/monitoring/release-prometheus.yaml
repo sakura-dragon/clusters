@@ -1,0 +1,137 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-stack
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: "52.x"
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+      interval: 12h
+  targetNamespace: monitoring
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+  values:
+    grafana:
+      enabled: false
+    alertmanager:
+      enabled: false
+    prometheus:
+      prometheusSpec:
+        retention: 21w
+        retentionSize: "5GB"
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              resources:
+                requests:
+                  storage: 10Gi
+        # podMonitorNamespaceSelector: {}
+        podMonitorSelector:
+          matchLabels:
+            app.kubernetes.io/component: monitoring
+    extraManifests:
+      - apiVersion: monitoring.coreos.com/v1
+        kind: PodMonitor
+        metadata:
+          name: flux-system
+          namespace: monitoring
+          labels:
+            app.kubernetes.io/part-of: flux
+            app.kubernetes.io/component: monitoring
+        spec:
+          namespaceSelector:
+            matchNames:
+              - flux-system
+          selector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - helm-controller
+                  - source-controller
+                  - kustomize-controller
+                  - notification-controller
+                  - image-automation-controller
+                  - image-reflector-controller
+          podMetricsEndpoints:
+            - port: http-prom
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-adapter
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: prometheus-adapter
+      version: "4.x"
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+      interval: 12h
+  targetNamespace: monitoring
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    prometheus:
+      # Value is templated
+      url: http://prometheus-operated.monitoring.svc
+    rules:
+      resource:
+        cpu:
+          containerQuery: |
+            sum by (<<.GroupBy>>) (
+              rate(container_cpu_usage_seconds_total{container!="",<<.LabelMatchers>>}[3m])
+            )
+          nodeQuery: |
+            sum  by (<<.GroupBy>>) (
+              rate(node_cpu_seconds_total{mode!="idle",mode!="iowait",mode!="steal",<<.LabelMatchers>>}[3m])
+            )
+          resources:
+            overrides:
+              node:
+                resource: node
+              namespace:
+                resource: namespace
+              pod:
+                resource: pod
+          containerLabel: container
+        memory:
+          containerQuery: |
+            sum by (<<.GroupBy>>) (
+              avg_over_time(container_memory_working_set_bytes{container!="",<<.LabelMatchers>>}[3m])
+            )
+          nodeQuery: |
+            sum by (<<.GroupBy>>) (
+              avg_over_time(node_memory_MemTotal_bytes{<<.LabelMatchers>>}[3m])
+              -
+              avg_over_time(node_memory_MemAvailable_bytes{<<.LabelMatchers>>}[3m])
+            )
+          resources:
+            overrides:
+              node:
+                resource: node
+              namespace:
+                resource: namespace
+              pod:
+                resource: pod
+          containerLabel: container
+        window: 3m
