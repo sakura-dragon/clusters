@@ -15,5 +15,3 @@ spec:
     substituteFrom:
       - kind: Secret
         name: cluster-vars
-  dependsOn:
-    - name: base

@@ -17,3 +17,7 @@ spec:
         name: app-vars
   dependsOn:
     - name: base
+    - name: openebs
+    - name: pg-operator
+    - name: monitoring
+    - name: istio
