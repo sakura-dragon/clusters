@@ -22,9 +22,9 @@ spec:
         email_attribute_path: email
         login_attribute_path: username
         name_attribute_path: full_name
-        auth_url: https://${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/auth
-        token_url: https://${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token
-        api_url: https://${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/userinfo
+        auth_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/auth
+        token_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token
+        api_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/userinfo
         allow_assign_grafana_admin: true
         role_attribute_path: contains(grafana-roles[*], 'grafanaadmin') && 'GrafanaAdmin' || contains(grafana-roles[*], 'admin') && 'Admin' || contains(grafana-roles[*], 'editor') && 'Editor' || 'Viewer'
       database:
