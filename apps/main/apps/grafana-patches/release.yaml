@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+spec:
+  values:
+    grafana.ini:
+      server:
+        domain: dash.${PUBLIC_DOMAIN}
+      auth:
+        disable_login_form: true
+      auth.basic:
+        enabled: false
+      auth.generic_oauth:
+        enabled: true
+        auto_login: true
+        name: ${KEYCLOAK_REALM}
+        allow_sign_up: true
+        client_id: $__file{/etc/secrets/auth_generic_oauth/client_id}
+        client_secret: $__file{/etc/secrets/auth_generic_oauth/client_secret}
+        scopes: openid email profile offline_access roles
+        email_attribute_path: email
+        login_attribute_path: username
+        name_attribute_path: full_name
+        auth_url: https://${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/auth
+        token_url: https://${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token
+        api_url: https://${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/userinfo
+        allow_assign_grafana_admin: true
+        role_attribute_path: contains(grafana-roles[*], 'grafanaadmin') && 'GrafanaAdmin' || contains(grafana-roles[*], 'admin') && 'Admin' || contains(grafana-roles[*], 'editor') && 'Editor' || 'Viewer'
+      database:
+        url: $__file{/etc/secrets/postgres/uri}
+    extraSecretMounts:
+      - name: postgres-secrets-mount
+        secretName: apps-pguser-grafana
+        defaultMode: 0440
+        mountPath: /etc/secrets/postgres
+        readOnly: true
+      - name: auth-generic-oauth-secrets-mount
+        secretName: grafana-oauth
+        defaultMode: 0440
+        mountPath: /etc/secrets/auth_generic_oauth
+        readOnly: true
