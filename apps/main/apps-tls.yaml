@@ -7,7 +7,7 @@ metadata:
 spec:
   commonName: "vault.${PUBLIC_DOMAIN}"
   dnsNames:
-  - "vault.${PUBLIC_DOMAIN}"
+    - "vault.${PUBLIC_DOMAIN}"
   issuerRef:
     kind: ClusterIssuer
     name: cloudflare
@@ -21,8 +21,22 @@ metadata:
 spec:
   commonName: "login.${PUBLIC_DOMAIN}"
   dnsNames:
-  - "login.${PUBLIC_DOMAIN}"
+    - "login.${PUBLIC_DOMAIN}"
   issuerRef:
     kind: ClusterIssuer
     name: cloudflare
   secretName: keycloak-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana
+  namespace: istio-system
+spec:
+  commonName: "dash.${PUBLIC_DOMAIN}"
+  dnsNames:
+    - "dash.${PUBLIC_DOMAIN}"
+  issuerRef:
+    kind: ClusterIssuer
+    name: cloudflare
+  secretName: grafana-tls

@@ -10,6 +10,7 @@ spec:
   - hosts:
     - vault.${PUBLIC_DOMAIN}
     - login.${PUBLIC_DOMAIN}
+    - dash.${PUBLIC_DOMAIN}
     port:
       number: 80
       name: http
@@ -34,3 +35,12 @@ spec:
     tls:
       mode: SIMPLE
       credentialName: keycloak-tls
+  - hosts:
+    - dash.${PUBLIC_DOMAIN}
+    port:
+      name: https-dash
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: grafana-tls
