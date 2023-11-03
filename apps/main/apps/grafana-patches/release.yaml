@@ -28,7 +28,11 @@ spec:
         allow_assign_grafana_admin: true
         role_attribute_path: contains(grafana-roles[*], 'grafanaadmin') && 'GrafanaAdmin' || contains(grafana-roles[*], 'admin') && 'Admin' || contains(grafana-roles[*], 'editor') && 'Editor' || 'Viewer'
       database:
-        url: $__file{/etc/secrets/postgres/uri}
+        type: postgres
+        host: $__file{/etc/secrets/postgres/host}:$__file{/etc/secrets/postgres/port}
+        name: $__file{/etc/secrets/postgres/dbname}
+        user: $__file{/etc/secrets/postgres/user}
+        password: $__file{/etc/secrets/postgres/password}
     extraSecretMounts:
       - name: postgres-secrets-mount
         secretName: apps-pguser-grafana
