@@ -13,6 +13,8 @@ spec:
       databases:
         - vaultwarden
     - name: grafana
+      databases:
+        - grafana
   instances:
     - name: instance1
       dataVolumeClaimSpec:

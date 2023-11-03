@@ -6,8 +6,11 @@ resources:
   - postgres.yaml
   - ../../base/keycloak
   - ../../base/vaultwarden
+  - ../../base/grafana
 patchesStrategicMerge:
   - keycloak-patches/release.yaml
   - keycloak-patches/virtual-service.yaml
   - vaultwarden-patches/deployment.yaml
   - vaultwarden-patches/virtual-service.yaml
+  - grafana-patches/release.yaml
+  - grafana-patches/virtual-service.yaml
