@@ -9,6 +9,7 @@ spec:
         domain: dash.${PUBLIC_DOMAIN}
       auth:
         disable_login_form: true
+        signout_redirect_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=https%3A%2F%2$dash%2F{PUBLIC_DOMAIN}%2Flogin
       auth.basic:
         enabled: false
       auth.generic_oauth:
@@ -26,7 +27,7 @@ spec:
         token_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token
         api_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/userinfo
         allow_assign_grafana_admin: true
-        role_attribute_path: contains(grafana-roles[*], 'grafanaadmin') && 'GrafanaAdmin' || contains(grafana-roles[*], 'admin') && 'Admin' || contains(grafana-roles[*], 'editor') && 'Editor' || 'Viewer'
+        role_attribute_path: contains(roles[*], 'grafana-admin') && 'GrafanaAdmin' || 'Viewer'
       database:
         type: postgres
         host: $__file{/etc/secrets/postgres/host}:$__file{/etc/secrets/postgres/port}
