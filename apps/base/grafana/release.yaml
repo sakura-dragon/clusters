@@ -18,4 +18,4 @@ spec:
     grafana.ini:
       server:
         domain: monitoring.example.com # Overridden via patch
-        root_url: "%(protocol)s://%(domain)s/"
+        root_url: "https://%(domain)s/"
