@@ -9,7 +9,7 @@ spec:
         domain: dash.${PUBLIC_DOMAIN}
       auth:
         disable_login_form: true
-        signout_redirect_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=https%3A%2F%2$dash%2F{PUBLIC_DOMAIN}%2Flogin
+        signout_redirect_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=https%3A%2F%2dash.${PUBLIC_DOMAIN}%2Flogin
       auth.basic:
         enabled: false
       auth.generic_oauth:
