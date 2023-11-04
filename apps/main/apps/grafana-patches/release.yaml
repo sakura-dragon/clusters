@@ -27,7 +27,7 @@ spec:
         token_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token
         api_url: https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/userinfo
         allow_assign_grafana_admin: true
-        role_attribute_path: contains(roles[*], 'grafana-admin') && 'GrafanaAdmin' || 'Viewer'
+        role_attribute_path: contains(roles[*], 'grafanaadmin') && 'GrafanaAdmin' || contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'
       database:
         type: postgres
         host: $__file{/etc/secrets/postgres/host}:$__file{/etc/secrets/postgres/port}
