@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: vaultwarden
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
       automountServiceAccountToken: false
       securityContext:

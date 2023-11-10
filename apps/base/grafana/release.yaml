@@ -14,6 +14,8 @@ spec:
         namespace: flux-system
       interval: 12h
   values:
+    podAnnotations:
+      sidecar.istio.io/inject: "true"
     plugins: []
     grafana.ini:
       server:
