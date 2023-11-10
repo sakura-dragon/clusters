@@ -6,4 +6,4 @@ spec:
   hosts:
   - login.${PUBLIC_DOMAIN}
   gateways:
-  - apps-ingress
+  - auth-ingress

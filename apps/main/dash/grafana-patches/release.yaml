@@ -40,12 +40,12 @@ spec:
         ca_cert_path: /etc/secrets/postgres-certs/ca.crt
     extraSecretMounts:
       - name: postgres-secrets-mount
-        secretName: apps-pguser-grafana
+        secretName: dash-pguser-grafana
         defaultMode: 0440
         mountPath: /etc/secrets/postgres
         readOnly: true
       - name: postgres-certs-mount
-        secretName: apps-cluster-cert
+        secretName: dash-cluster-cert
         defaultMode: 0440
         mountPath: /etc/secrets/postgres-certs
         readOnly: true

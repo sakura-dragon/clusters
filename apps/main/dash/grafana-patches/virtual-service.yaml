@@ -6,4 +6,4 @@ spec:
   hosts:
   - dash.${PUBLIC_DOMAIN}
   gateways:
-  - apps-ingress
+  - dash-ingress

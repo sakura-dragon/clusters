@@ -1,17 +1,11 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: apps
+  name: dash
 spec:
   image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-15.4-0
   postgresVersion: 15
   users:
-    - name: keycloak
-      databases:
-        - keycloak
-    - name: vaultwarden
-      databases:
-        - vaultwarden
     - name: grafana
       databases:
         - grafana

@@ -20,6 +20,8 @@ spec:
         spec:
           values:
             localprovisioner:
+              nodeSelector:
+                local-storage: "true"
               hostpathClass:
                 # Prerequisite: XFS Quota requires an XFS filesystem mounted with
                 # the 'pquota' or 'prjquota' mount option.

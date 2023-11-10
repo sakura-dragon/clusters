@@ -6,4 +6,4 @@ spec:
   hosts:
   - vault.${PUBLIC_DOMAIN}
   gateways:
-  - apps-ingress
+  - auth-ingress
