@@ -26,3 +26,27 @@ spec:
         enabled: true
         label: grafana_dashboard
         labelValue: "1"
+        folder: /tmp/dashboards
+        folderAnnotation: grafana_folder
+        provider:
+          foldersFromFilesStructure: true
+    dashboardProviders:
+      monitoring-provider.yaml:
+        apiVersion: 1
+        providers:
+          - name: 'kubernetes'
+            orgId: 1
+            folder: 'kubernetes'
+            type: file
+            disableDeletion: false
+            editable: false
+            options:
+              path: /tmp/dashboards/kubernetes
+          - name: 'flux'
+            orgId: 1
+            folder: 'flux'
+            type: file
+            disableDeletion: false
+            editable: false
+            options:
+              path: /tmp/dashboards/flux
