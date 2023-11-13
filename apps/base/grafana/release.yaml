@@ -21,3 +21,8 @@ spec:
       server:
         domain: monitoring.example.com # Overridden via patch
         root_url: "https://%(domain)s/"
+    sidecar:
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+        labelValue: "1"
