@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: dash
 resources:
   - ns.yaml
+  - monitoring-repo.yaml
+  - monitoring-dashboards.yaml
   - postgres.yaml
   - ../../base/grafana
 patchesStrategicMerge:
