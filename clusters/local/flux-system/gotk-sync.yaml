@@ -9,7 +9,9 @@ spec:
   interval: 1m0s
   ref:
     branch: main
-  url: https://github.com/sakura-dragon/clusters.git
+  secretRef:
+    name: flux-system
+  url: ssh://git@github.com/sakura-dragon/clusters
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
