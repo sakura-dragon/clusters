@@ -5,8 +5,6 @@ metadata:
 spec:
   hosts:
   - localhost
-  gateways:
-  - default/local-ingress
   http:
   - name: "grafana"
     match:
