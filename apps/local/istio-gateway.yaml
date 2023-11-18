@@ -8,7 +8,7 @@ spec:
     istio: system-istio-ingress
   servers:
   - hosts:
-    - localhost
+    - ${LOCAL_DOMAIN}
     port:
       number: 80
       name: http

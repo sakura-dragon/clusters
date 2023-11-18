@@ -29,4 +29,6 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 flux check --pre
 # Provision the kind cluster
 flux bootstrap github --owner=sakura-dragon --repository=clusters --branch=main --path=clusters/local
+# Create a secret for provisions the apps cluster with
+kubectl create secret generic app-vars -n flux-system --from-literal=LOCAL_DOMAIN=$LOCAL_DOMAIN
 ```

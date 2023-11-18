@@ -11,6 +11,10 @@ spec:
     name: flux-system
   path: ./apps/local
   prune: true
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: app-vars
   dependsOn:
     - name: base
     - name: monitoring
