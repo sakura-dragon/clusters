@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grafana
+spec:
+  hosts:
+  - localhost
+  gateways:
+  - default/local-ingress
+  http:
+  - name: "grafana"
+    match:
+    - uri:
+        prefix: "/grafana"

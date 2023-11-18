@@ -1,0 +1,11 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+spec:
+  values:
+    grafana.ini:
+      server:
+        domain: localhost
+        root_url: "http://localhost/grafana/"
+        serve_from_sub_path: "true"
