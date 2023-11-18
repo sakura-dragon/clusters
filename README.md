@@ -15,3 +15,18 @@ Directories:
 * apps: 
     * base: base applications, as generic as possible if I wanted to deploy it multiple times
     * additional directories per cluster for describing any "apps" or services.
+
+# Local testing
+
+There is a `local-cluster.yaml` config file that can be used with [kind](https://kind.sigs.k8s.io) to setup a local k8s cluster for testing purposes.
+
+```bash
+# Create the local kind cluster
+kind create cluster --config=local-cluster.yaml
+# Ensure flux is installed
+curl -s https://fluxcd.io/install.sh | sudo bash
+# Flux pre-flight checks
+flux check --pre
+# Provision the kind cluster
+flux bootstrap github --owner=sakura-dragon --repository=clusters --branch=main --path=clusters/local
+```
