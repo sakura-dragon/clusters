@@ -36,3 +36,8 @@ spec:
                   domain: ${LOCAL_DOMAIN}
                   root_url: "http://${LOCAL_DOMAIN}/grafana/"
                   serve_from_sub_path: "true"
+              ingress:
+                enabled: true
+                hosts:
+                - ${LOCAL_DOMAIN}
+                path: /grafana
