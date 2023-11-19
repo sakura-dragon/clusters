@@ -48,3 +48,25 @@ spec:
                 access: proxy
                 url: http://{{ .Release.Namespace }}-loki-stack:3100
                 version: 1
+            prometheus:
+              prometheusSpec:
+                ruleNamespaceSelector:
+                  matchExpressions:
+                    - key: kubernetes.io/metadata.name
+                      operator: Exists
+                serviceMonitorNamespaceSelector:
+                  matchExpressions:
+                    - key: kubernetes.io/metadata.name
+                      operator: Exists
+                podMonitorNamespaceSelector:
+                  matchExpressions:
+                    - key: kubernetes.io/metadata.name
+                      operator: Exists
+                probeNamespaceSelector:
+                  matchExpressions:
+                    - key: kubernetes.io/metadata.name
+                      operator: Exists
+                scrapeConfigNamespaceSelector:
+                  matchExpressions:
+                    - key: kubernetes.io/metadata.name
+                      operator: Exists
