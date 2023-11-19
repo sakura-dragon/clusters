@@ -4,4 +4,4 @@ namespace: flux-system
 resources:
   - repositories.yaml
   - release-prometheus.yaml
-  # - release-loki.yaml
+  - release-loki.yaml
