@@ -50,18 +50,8 @@ spec:
                 version: 1
             prometheus:
               prometheusSpec:
-                ruleSelectorNilUsesHelmValues: true
-                ruleSelector: {}
-                ruleNamespaceSelector: {}
-                serviceMonitorSelectorNilUsesHelmValues: true
-                serviceMonitorSelector: {}
-                serviceMonitorNamespaceSelector: {}
-                podMonitorSelectorNilUsesHelmValues: true
-                podMonitorSelector: {}
-                podMonitorNamespaceSelector: {}
-                probeSelectorNilUsesHelmValues: true
-                probeSelector: {}
-                probeNamespaceSelector: {}
-                scrapeSelectorNilUsesHelmValues: true
-                scrapeSelector: {}
-                scrapeNamespaceSelector: {}
+                ruleSelectorNilUsesHelmValues: false
+                serviceMonitorSelectorNilUsesHelmValues: false
+                podMonitorSelectorNilUsesHelmValues: false
+                probeSelectorNilUsesHelmValues: false
+                scrapeSelectorNilUsesHelmValues: false
