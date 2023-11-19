@@ -30,7 +30,11 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    hostNetwork: true
     logs:
       access:
         enabled: true
+    ports:
+      web:
+        nodePort: 32080
+      websecure:
+        nodePort: 32443
