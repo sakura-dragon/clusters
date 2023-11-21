@@ -20,6 +20,8 @@ Directories:
 
 There is a `local-cluster.yaml` config file that can be used with [kind](https://kind.sigs.k8s.io) to setup a local k8s cluster for testing purposes.
 
+To configure a local cluster you will want to checkout this git repository locally and ensure that `$LOCAL_DOMAIN` is set to a hostname that resolves to `127.0.0.1`.
+
 ```bash
 # Create the local kind cluster
 kind create cluster --config=local-cluster.yaml
@@ -28,7 +30,10 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 # Flux pre-flight checks
 flux check --pre
 # Provision the kind cluster
+# Note: This will want running twice as the CRD's don't exist the first time this command is run
 kubectl kustomize  ./clusters/local/flux-system/  | kubectl apply -f -
 # Create a secret for provisions the apps cluster with
 kubectl create secret generic app-vars -n flux-system --from-literal=LOCAL_DOMAIN=$LOCAL_DOMAIN
 ```
+
+Note: Grafana is deployed to `http://$LOCAL_DOMAIN/grafana` with the default credentials of `admin:prom-operator`, as this is only running over `127.0.0.1` there is no requirement for this to be secure.
