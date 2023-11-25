@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+spec:
+  values:
+    podAnnotations:
+      sidecar.istio.io/inject: "true"
+    persistence:
+      size: 50Gi
+    externalDatabase:
+      existingSecret:
+        secretName: nextcloud-pguser-nextcloud

@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: nextcloud
+      version: 4.x.x
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud
+      interval: 12h
+  values:
+    persistence:
+      enabled: true
+      size: 8Gi
+    cronjob:
+      enabled: true
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      type: postgresql
+      existingSecret:
+        enabled: true
+        secretName: xxxx-pguser-nextcloud
+        usernameKey: user
+        passwordKey: password
+        hostKey: host
+        databaseKey: dname
