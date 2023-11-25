@@ -4,4 +4,4 @@ namespace: flux-system
 resources:
   - cert-manager.yaml
   - csi-secrets-store.yaml
-  - jsonnet-controller.yaml
+  # - jsonnet-controller.yaml
