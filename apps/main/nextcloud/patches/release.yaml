@@ -4,8 +4,6 @@ metadata:
   name: nextcloud
 spec:
   values:
-    podAnnotations:
-      sidecar.istio.io/inject: "true"
     persistence:
       size: 50Gi
     externalDatabase:

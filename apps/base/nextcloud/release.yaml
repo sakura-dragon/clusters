@@ -13,6 +13,8 @@ spec:
         name: nextcloud
       interval: 12h
   values:
+    podLabels:
+      sidecar.istio.io/inject: "true"
     persistence:
       enabled: true
       size: 8Gi
