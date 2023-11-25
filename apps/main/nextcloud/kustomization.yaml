@@ -4,7 +4,7 @@ namespace: nextcloud
 resources:
   - ns.yaml
   - postgres.yaml
-#   - ../../base/nextcloud
-# patchesStrategicMerge:
-#   - patches/release.yaml
-#   - patches/virtual-service.yaml
+  - ../../base/nextcloud
+patchesStrategicMerge:
+  - patches/release.yaml
+  - patches/virtual-service.yaml
