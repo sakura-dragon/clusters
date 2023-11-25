@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: registry-ingress
+  namespace: registry
+spec:
+  selector:
+    istio: system-istio-ingress
+  servers:
+  - hosts:
+    - registry.${PRIVATE_DOMAIN}
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+  - hosts:
+    - registry.${PRIVATE_DOMAIN}
+    port:
+      name: https-registry
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: registry-tls

@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: goharbor
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: goharbor
+      version: 1.x.x
+      sourceRef:
+        kind: HelmRepository
+        name: goharbor
+      interval: 12h
+  values:
+    expose:
+      type: ClusterIP
+    externalURL: registry.${PRIVATE_DOMAIN}
+    database:
+      type: internal
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
