@@ -9,3 +9,5 @@ spec:
     externalDatabase:
       existingSecret:
         secretName: nextcloud-pguser-nextcloud
+    nextcloud:
+      host: files.${PUBLIC_DOMAIN}
