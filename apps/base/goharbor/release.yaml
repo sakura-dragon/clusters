@@ -6,7 +6,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: goharbor
+      chart: harbor
       version: 1.x.x
       sourceRef:
         kind: HelmRepository
