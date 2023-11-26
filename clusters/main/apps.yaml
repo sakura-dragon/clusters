@@ -21,3 +21,4 @@ spec:
     - name: pg-operator
     - name: monitoring
     - name: istio
+    - name: traefik
