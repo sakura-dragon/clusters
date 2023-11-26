@@ -5,5 +5,3 @@ resources:
   - ns.yaml
   - tls.yaml
   - ../../base/goharbor
-patchesStrategicMerge:
-  - patches/release.yaml

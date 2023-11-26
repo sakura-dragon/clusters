@@ -21,9 +21,9 @@ spec:
           secretName: registry-tls
       ingress:
         hosts:
-          core: registry.example.com
+          core: registry.${PRIVATE_DOMAIN}
       # controller: traefik
-    externalURL: https://registry.example.com
+    externalURL: https://registry.${PRIVATE_DOMAIN}
     # Not defaulting to postgres operator as this is not a "critical" service,
     #   in the sense that I don't store anything critical (yet) and I'm happy
     #   to re-build anything if this is ever lost
