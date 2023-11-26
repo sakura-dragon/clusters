@@ -54,3 +54,18 @@ spec:
     kind: ClusterIssuer
     name: cloudflare
   secretName: nextcloud-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: registry
+  namespace: traefik
+spec:
+  commonName: "registry.${PRIVATE_DOMAIN}"
+  dnsNames:
+    - "registry.${PRIVATE_DOMAIN}"
+  issuerRef:
+    kind: ClusterIssuer
+    name: cloudflare
+  secretName: registry-tls
+
