@@ -15,3 +15,35 @@ spec:
         port:
           number: 8080
         host: nextcloud
+        headers:
+          response:
+            set:
+              Strict-Transport-Security: max-age=31536000; includeSubDomains
+  - match:
+    - uri:
+        prefix: /.well-known/carddav
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: nextcloud
+        headers:
+          response:
+            set:
+              Strict-Transport-Security: max-age=31536000; includeSubDomains
+    rewrite:
+      uri: /remote.php/dav
+  - match:
+    - uri:
+        prefix: /.well-known/caldav
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: nextcloud
+        headers:
+          response:
+            set:
+              Strict-Transport-Security: max-age=31536000; includeSubDomains
+    rewrite:
+      uri: /remote.php/dav
