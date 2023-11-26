@@ -24,3 +24,7 @@ spec:
     logs:
       access:
         enabled: true
+    ports:
+      web:
+        redirectTo:
+          port: websecure
