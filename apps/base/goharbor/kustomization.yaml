@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - repo.yaml
   - release.yaml
-  - istio-virtual-service.yaml
