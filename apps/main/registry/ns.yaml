@@ -3,4 +3,5 @@ kind: Namespace
 metadata:
   name: registry
   labels:
-    istio-injection: enabled
+    # Using traefik for this namespace
+    istio-injection: disabled
