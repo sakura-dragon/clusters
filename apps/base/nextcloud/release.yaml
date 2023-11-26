@@ -15,10 +15,14 @@ spec:
   values:
     podLabels:
       sidecar.istio.io/inject: "true"
+    phpClientHttpsFix:
+      enabled: true
     persistence:
       enabled: true
       size: 8Gi
     cronjob:
+      enabled: true
+    redis:
       enabled: true
     internalDatabase:
       enabled: false
