@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-settings
+type: Opaque
+stringData:
+  GITLAB_OMNIBUS_CONFIG: |
+    external_url 'https://gitlab.${PRIVATE_DOMAIN}'
+    puma['worker_processes'] = 0
+    sidekiq['max_concurrency'] = 10
+    gitlab_rails['env'] = {
+      'MALLOC_CONF' => 'dirty_decay_ms:1000,muzzy_decay_ms:1000'
+    }
+    gitaly['env'] = {
+    'MALLOC_CONF' => 'dirty_decay_ms:1000,muzzy_decay_ms:1000',
+    'GITALY_COMMAND_SPAWN_MAX_PARALLEL' => '2'
+    }
+    gitaly['configuration'] = {
+      concurrency: [
+        {
+          rpc: '/gitaly.SmartHTTPService/PostReceivePack',
+          max_per_repo: 3,
+        },
+        {
+          rpc: '/gitaly.SSHService/SSHUploadPack',
+          max_per_repo: 3,
+        },
+      ],
+    }
+    # Don't think these are needed, but we are running behind a reverse proxy
+    letsencrypt['enable'] = false
+    nginx['listen_port'] = 80
+    nginx['listen_https'] = false
+    # Auth
+    gitlab_rails['omniauth_enabled'] = true
+    gitlab_rails['omniauth_allow_single_sign_on'] = ['saml']
+    gitlab_rails['omniauth_auto_sign_in_with_provider'] = 'saml'
+    gitlab_rails['omniauth_block_auto_created_users'] = false
+    gitlab_rails['omniauth_auto_link_saml_user'] = true
+    gitlab_rails['omniauth_providers'] = [{
+      name: 'saml',
+      label: '${KEYCLOAK_REALM} Login',
+    # Re-enable user/password login as this will overwrite the users group type
+    #    groups_attribute: 'Roles',
+    #    admin_groups: ['admin'],
+      args: {
+        assertion_consumer_service_url: 'https://gitlab.${PRIVATE_DOMAIN}/users/auth/saml/callback',
+        idp_cert_fingerprint: 'C2:B4:D9:DE:6F:C5:DC:AD:91:0E:82:AD:8D:7F:2D:9C:FD:28:48:8D',
+        idp_sso_target_url: 'https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/saml/clients/gitlab.${PRIVATE_DOMAIN}',
+        issuer: 'gitlab.${PRIVATE_DOMAIN}',
+        name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
+      }
+    }]

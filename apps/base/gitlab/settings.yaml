@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-settings
+  labels:
+    app: gitlab
+type: Opaque
+stringData:
+  GITLAB_OMNIBUS_CONFIG: |
+    external_url 'https://gitlab.${PRIVATE_DOMAIN}'
+    puma['worker_processes'] = 0
+    sidekiq['max_concurrency'] = 10
+    gitlab_rails['env'] = {
+      'MALLOC_CONF' => 'dirty_decay_ms:1000,muzzy_decay_ms:1000'
+    }
+    gitaly['env'] = {
+    'MALLOC_CONF' => 'dirty_decay_ms:1000,muzzy_decay_ms:1000',
+    'GITALY_COMMAND_SPAWN_MAX_PARALLEL' => '2'
+    }
+    gitaly['configuration'] = {
+      concurrency: [
+        {
+          rpc: '/gitaly.SmartHTTPService/PostReceivePack',
+          max_per_repo: 3,
+        },
+        {
+          rpc: '/gitaly.SSHService/SSHUploadPack',
+          max_per_repo: 3,
+        },
+      ],
+    }
+    # Don't think these are needed, but we are running behind a reverse proxy
+    letsencrypt['enable'] = false
+    nginx['listen_port'] = 80
+    nginx['listen_https'] = false

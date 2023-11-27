@@ -19,12 +19,8 @@ spec:
       - name: gitlab
         image: gitlab/gitlab-ce:16.5.2
         envFrom:
-        - configMapRef:
-            name: gitlab
-            optional: true
         - secretRef:
             name: gitlab-settings
-            optional: true
         ports:
         - containerPort: 80
           name: http
