@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
       - name: gitlab
-        image: gitlab/gitlab-ce:16.5.2
+        image: gitlab/gitlab-ce:16.5.2-ce.0
         envFrom:
         - secretRef:
             name: gitlab-settings
