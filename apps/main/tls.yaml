@@ -68,4 +68,17 @@ spec:
     kind: ClusterIssuer
     name: cloudflare
   secretName: registry-tls
-
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gitlab
+  namespace: traefik
+spec:
+  commonName: "gitlab.${PRIVATE_DOMAIN}"
+  dnsNames:
+    - "gitlab.${PRIVATE_DOMAIN}"
+  issuerRef:
+    kind: ClusterIssuer
+    name: cloudflare
+  secretName: gitlab-tls

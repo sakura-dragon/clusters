@@ -16,3 +16,7 @@ spec:
             name: gitlab
             port:
               number: http
+  tls:
+  - hosts:
+      - gitlab.${PRIVATE_DOMAIN}
+    secretName: gitlab-tls
