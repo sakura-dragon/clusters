@@ -7,4 +7,3 @@ resources:
   - ../../base/gitlab
 patchesStrategicMerge:
   - patches/settings.yaml
-  - patches/statefulset.yaml
