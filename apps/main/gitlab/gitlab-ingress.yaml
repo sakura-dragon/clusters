@@ -15,7 +15,7 @@ spec:
           service:
             name: gitlab
             port:
-              number: http
+              name: http
   tls:
   - hosts:
       - gitlab.${PRIVATE_DOMAIN}
