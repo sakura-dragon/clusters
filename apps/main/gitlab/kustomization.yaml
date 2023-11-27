@@ -4,6 +4,7 @@ namespace: gitlab
 resources:
   - ns.yaml
   - gitlab-ingress.yaml
+  - tls.yaml
   - ../../base/gitlab
 patchesStrategicMerge:
   - patches/settings.yaml
