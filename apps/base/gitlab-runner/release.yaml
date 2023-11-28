@@ -1,0 +1,61 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitlab-runner
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: gitlab-runner
+      version: 0.58.x
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab
+      interval: 12h
+  values:
+    gitlabUrl: https://gitlab.${PRIVATE_DOMAIN}
+    concurrent: 3
+    sessionServer:
+      enabled: true
+    rbac:
+      create: true
+      rules:
+      - apiGroups: [""]
+        resources: ["configmaps", "pods", "secrets", "services"]
+        verbs: ["get", "list", "watch", "create", "patch", "update", "delete"]
+      - apiGroups: [""]
+        resources: ["pods/attach", "pods/exec"]
+        verbs: ["get", "create", "patch", "delete"]
+      - apiGroups: [""]
+        resources: ["events", "pods/log"]
+        verbs: ["get", "list", "watch"]
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    service:
+      enabled: true
+    resources:
+      limits:
+        memory: 256Mi
+        cpu: 200m
+        ephemeral-storage: 512Mi
+      requests:
+        memory: 128Mi
+        cpu: 100m
+        ephemeral-storage: 256Mi
+    # Secret containing the following 2 keys "runner-token" and "runner-registration-token"
+    secret: gitlab-runner-token
+    runners:
+      config: |
+        [[runners]]
+          [runners.kubernetes]
+            namespace = "{{.Release.Namespace}}"
+            image = "alpine"
+            namespace_overwrite_allowed = ""
+            service_account_overwrite_allowed = ""
+            bearer_token_overwrite_allowed = false
+            pod_labels_overwrite_allowed = ""
+            pod_annotations_overwrite_allowed = ""
+            privileged = false
+            pull_policy = "always"
