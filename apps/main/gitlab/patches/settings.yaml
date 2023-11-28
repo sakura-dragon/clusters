@@ -46,7 +46,7 @@ stringData:
     #    admin_groups: ['admin'],
       args: {
         assertion_consumer_service_url: 'https://gitlab.${PRIVATE_DOMAIN}/users/auth/saml/callback',
-        idp_cert_fingerprint: '21:9D:98:C4:05:F2:3E:72:A8:46:4B:EC:78:39:64:81:FE:6F:7E:0E',
+        idp_cert_fingerprint: '69:DB:06:EF:D2:1F:CC:78:A6:4D:6C:28:0D:0C:7A:BC:96:2F:A0:B6',
         idp_sso_target_url: 'https://login.${PUBLIC_DOMAIN}/realms/${KEYCLOAK_REALM}/protocol/saml/clients/gitlab.${PRIVATE_DOMAIN}',
         issuer: 'gitlab.${PRIVATE_DOMAIN}',
         name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
