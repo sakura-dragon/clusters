@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: gitab-runner
+  name: gitlab-runner
   labels:
     istio-injection: disabled
