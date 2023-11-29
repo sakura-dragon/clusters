@@ -44,9 +44,9 @@ spec:
         memory: 128Mi
         cpu: 100m
         ephemeral-storage: 256Mi
-    # Secret containing the following 2 keys "runner-token" and "runner-registration-token"
-    secret: gitlab-runner-token
     runners:
+      # Secret containing the following 2 keys "runner-token" and "runner-registration-token"
+      secret: gitlab-runner-token
       config: |
         [[runners]]
           [runners.kubernetes]
