@@ -22,7 +22,7 @@ spec:
         fsGroup: 1001
         runAsUser: 1001
       containers:
-      - image: vaultwarden/server:latest
+      - image: vaultwarden/server:1.30.1
         imagePullPolicy: Always
         name: vaultwarden
         envFrom:
