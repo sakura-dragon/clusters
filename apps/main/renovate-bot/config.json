@@ -1,0 +1,6 @@
+{
+  "repositories": [
+    "sakura-dragon/renovate-tutorial"
+  ],
+  "dryRun": "true"
+}

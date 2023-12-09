@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: renovate-bot
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: renovate-bot
+              env:
+                - name: RENOVATE_CONFIG_FILE
+                  value: '/opt/renovate/config.json'
+              volumeMounts:
+                - name: config-volume
+                  mountPath: /opt/renovate/
+          volumes:
+            - name: config-volume
+              configMap:
+                name: renovate-config
