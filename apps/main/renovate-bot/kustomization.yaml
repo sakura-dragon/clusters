@@ -3,12 +3,12 @@ kind: Kustomization
 namespace: renovate-bot
 resources:
   - ns.yaml
-#   - ../../base/renovate-bot
-# configMapGenerator:
-#   - name: renovate-config
-#     files:
-#       - config.json
-#     options:
-#       disableNameSuffixHash: true
-# patchesStrategicMerge:
-#   - patch.yaml
+  - ../../base/renovate-bot
+configMapGenerator:
+  - name: renovate-config
+    files:
+      - config.json
+    options:
+      disableNameSuffixHash: true
+patchesStrategicMerge:
+  - patch.yaml
