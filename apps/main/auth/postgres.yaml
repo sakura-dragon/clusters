@@ -15,6 +15,15 @@ spec:
   instances:
     - name: instance1
       dataVolumeClaimSpec:
+        storageClass: openebs-hostpath
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 20Gi
+    - name: instance2
+      dataVolumeClaimSpec:
+        storageClass: openebs-hostpath
         accessModes:
         - "ReadWriteOnce"
         resources:
@@ -33,6 +42,7 @@ spec:
           incremental: "0 */4 * * *"
         volume:
           volumeClaimSpec:
+            storageClass: longhorn
             accessModes:
             - "ReadWriteOnce"
             resources:
