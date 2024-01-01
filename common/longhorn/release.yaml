@@ -19,3 +19,6 @@ spec:
     createNamespace: true
   upgrade:
     crds: CreateReplace
+  values:
+    csi:
+      kubeletRootDir: /var/lib/kubelet
