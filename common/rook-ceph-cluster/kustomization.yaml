@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: rook-ceph
 resources:
   - cluster.yaml
+  - block-storage.yaml
