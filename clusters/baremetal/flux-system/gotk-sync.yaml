@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: microk8s
+    branch: baremetal-kubespray
   url: https://github.com/sakura-dragon/clusters.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -18,7 +18,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/microk8s
+  path: ./clusters/baremetal
   prune: true
   sourceRef:
     kind: GitRepository
