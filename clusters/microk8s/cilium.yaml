@@ -23,3 +23,5 @@ spec:
             cni:
               confPath: /var/snap/microk8s/current/args/cni-network
               binPath: /var/snap/microk8s/current/opt/cni/bin
+            daemon:
+              runPath: /var/snap/microk8s/current/var/run/cilium
