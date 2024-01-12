@@ -18,6 +18,7 @@ spec:
         kind: HelmRelease
         metadata:
           name: cilium
+          namespace: kube-system
         spec:
           values:
             cni:
