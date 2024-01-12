@@ -16,6 +16,5 @@ spec:
       interval: 12h
   install:
     crds: Create
-    createNamespace: true
   upgrade:
     crds: CreateReplace
