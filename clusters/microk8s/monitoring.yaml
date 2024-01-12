@@ -14,4 +14,3 @@ spec:
   dependsOn:
     - name: base
     - name: openebs
-    - name: longhorn
