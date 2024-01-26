@@ -3,5 +3,5 @@ kind: Kustomization
 namespace: registry
 resources:
   - ns.yaml
-  - tls.yaml
-  - ../../base/goharbor
+  # - tls.yaml
+  # - ../../base/goharbor
