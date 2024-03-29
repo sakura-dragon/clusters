@@ -1,9 +1,0 @@
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: keycloak
-spec:
-  hosts:
-  - login.${PUBLIC_DOMAIN}
-  gateways:
-  - auth-ingress

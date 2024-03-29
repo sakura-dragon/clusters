@@ -1,9 +1,0 @@
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: nextcloud
-spec:
-  hosts:
-  - files.${PUBLIC_DOMAIN}
-  gateways:
-  - nextcloud-ingress
