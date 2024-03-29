@@ -34,20 +34,15 @@ spec:
         name: $__file{/etc/secrets/postgres/dbname}
         user: $__file{/etc/secrets/postgres/user}
         password: $__file{/etc/secrets/postgres/password}
-        ssl_mode: verify-ca
-        client_key_path: /etc/secrets/postgres-certs/tls.key
-        client_cert_path: /etc/secrets/postgres-certs/tls.crt
-        ca_cert_path: /etc/secrets/postgres-certs/ca.crt
+        # ssl_mode: verify-ca
+        # client_key_path: /etc/secrets/postgres-certs/tls.key
+        # client_cert_path: /etc/secrets/postgres-certs/tls.crt
+        # ca_cert_path: /etc/secrets/postgres-certs/ca.crt
     extraSecretMounts:
       - name: postgres-secrets-mount
         secretName: dash-pguser-grafana
         defaultMode: 0440
         mountPath: /etc/secrets/postgres
-        readOnly: true
-      - name: postgres-certs-mount
-        secretName: dash-cluster-cert
-        defaultMode: 0440
-        mountPath: /etc/secrets/postgres-certs
         readOnly: true
       - name: auth-generic-oauth-secrets-mount
         secretName: grafana-oauth

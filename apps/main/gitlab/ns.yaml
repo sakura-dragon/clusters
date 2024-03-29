@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: gitlab
-  labels:
-    # Using traefik for this namespace
-    istio-injection: disabled

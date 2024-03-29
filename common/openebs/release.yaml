@@ -19,18 +19,3 @@ spec:
     createNamespace: true
   upgrade:
     crds: CreateReplace
-  values:
-    # Only really want the hostpath provisioner,
-    #   assuming that this is the only storage class in the cluster
-    localprovisioner:
-      enabled: true
-      deviceClass:
-        enabled: false
-      hostpathClass:
-        isDefaultClass: true
-    snapshotOperator:
-      enabled: false
-    ndm:
-      enabled: false
-    ndmOperator:
-      enabled: false

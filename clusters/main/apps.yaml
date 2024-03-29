@@ -18,7 +18,6 @@ spec:
   dependsOn:
     - name: base
     - name: openebs
-    - name: pg-operator
     - name: monitoring
     - name: istio
     - name: traefik
