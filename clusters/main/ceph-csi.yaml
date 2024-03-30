@@ -13,7 +13,7 @@ spec:
   prune: true
   # dependsOn:
   #   - name: vault
-  # We only have a single worker node at this point in time
+  # We only have two worker node at this point in time
   patches:
     - patch: |-
         kind: HelmRelease
@@ -25,7 +25,7 @@ spec:
               chart: ceph-csi-rbd
           values:
             provisioner:
-              replicaCount: 1
+              replicaCount: 2
     - patch: |-
         kind: HelmRelease
         metadata:
@@ -36,5 +36,5 @@ spec:
               chart: ceph-csi-cephfs
           values:
             provisioner:
-              replicaCount: 1
+              replicaCount: 2
 
