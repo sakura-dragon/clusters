@@ -16,24 +16,20 @@ spec:
   # We only have two worker node at this point in time
   patches:
     - patch: |-
+        apiVersion: helm.toolkit.fluxcd.io/v2beta1
         kind: HelmRelease
         metadata:
           name: ceph-csi-rbd
         spec:
-          chart:
-            spec:
-              chart: ceph-csi-rbd
           values:
             provisioner:
               replicaCount: 2
     - patch: |-
+        apiVersion: helm.toolkit.fluxcd.io/v2beta1
         kind: HelmRelease
         metadata:
           name: ceph-csi-cephfs
         spec:
-          chart:
-            spec:
-              chart: ceph-csi-cephfs
           values:
             provisioner:
               replicaCount: 2
