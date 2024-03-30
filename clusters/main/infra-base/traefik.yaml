@@ -11,5 +11,3 @@ spec:
     name: cluster
   path: ./apps/traefik
   prune: true
-  dependsOn:
-    - name: base

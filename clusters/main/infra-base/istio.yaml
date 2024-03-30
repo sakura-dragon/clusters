@@ -11,5 +11,3 @@ spec:
     name: cluster
   path: ./apps/istio
   prune: true
-  dependsOn:
-    - name: base

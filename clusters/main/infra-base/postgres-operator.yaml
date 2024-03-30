@@ -11,5 +11,3 @@ spec:
     name: cluster
   path: ./apps/postgres-operator
   prune: true
-  dependsOn:
-    - name: base
