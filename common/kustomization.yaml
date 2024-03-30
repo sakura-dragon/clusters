@@ -5,3 +5,4 @@ resources:
   - cert-manager.yaml
   - csi-secrets-store.yaml
   # - jsonnet-controller.yaml
+  - helm-repos.yaml

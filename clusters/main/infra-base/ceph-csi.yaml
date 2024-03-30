@@ -8,8 +8,8 @@ spec:
   interval: 1h
   sourceRef:
     kind: GitRepository
-    name: flux-system
-  path: ./common/ceph-csi
+    name: cluster
+  path: ./apps/ceph-csi
   prune: true
   # dependsOn:
   #   - name: vault

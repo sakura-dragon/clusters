@@ -2,14 +2,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: pg-operator
+  name: traefik
   namespace: flux-system
 spec:
   interval: 1h
   sourceRef:
     kind: GitRepository
-    name: flux-system
-  path: ./common/postgres-operator
+    name: cluster
+  path: ./apps/traefik
   prune: true
   dependsOn:
     - name: base

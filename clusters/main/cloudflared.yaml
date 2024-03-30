@@ -8,8 +8,8 @@ spec:
   interval: 1h
   sourceRef:
     kind: GitRepository
-    name: flux-system
-  path: ./common/cloudflared
+    name: cluster
+  path: ./apps/cloudflared
   prune: true
   dependsOn:
     - name: base

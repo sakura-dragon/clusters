@@ -2,13 +2,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: helm-repos
-  namespace: default
+  name: pg-operator
+  namespace: flux-system
 spec:
   interval: 1h
   sourceRef:
     kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  path: ./common/helm-repos
+    name: cluster
+  path: ./apps/postgres-operator
   prune: true
+  dependsOn:
+    - name: base

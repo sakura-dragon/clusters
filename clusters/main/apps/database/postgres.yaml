@@ -1,0 +1,43 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: main
+spec:
+  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-15.4-0
+  postgresVersion: 15
+  instances:
+    - name: instance1
+      dataVolumeClaimSpec:
+        storageClassName: rbd-ssd
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 20Gi
+    - name: instance2
+      dataVolumeClaimSpec:
+        storageClassName: rbd-ssd
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 20Gi
+  backups:
+    pgbackrest:
+      image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.47-0
+      global:
+        repo1-retention-full: "7"
+        repo1-retention-full-type: time
+      repos:
+      - name: repo1
+        schedules:
+          full: "0 1 * * *"
+          incremental: "0 */4 * * *"
+        volume:
+          volumeClaimSpec:
+            storageClassName: cephfs
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 20Gi

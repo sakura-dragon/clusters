@@ -8,8 +8,8 @@ spec:
   interval: 1h
   sourceRef:
     kind: GitRepository
-    name: flux-system
-  path: ./common/hashicorp-vault
+    name: cluster
+  path: ./apps/hashicorp-vault
   prune: true
 ---
 apiVersion: v1
