@@ -20,6 +20,9 @@ spec:
         metadata:
           name: ceph-csi-rbd
         spec:
+          chart:
+            spec:
+              chart: ceph-csi-rbd
           values:
             provisioner:
               replicaCount: 1
@@ -28,6 +31,9 @@ spec:
         metadata:
           name: ceph-csi-cephfs
         spec:
+          chart:
+            spec:
+              chart: ceph-csi-cephfs
           values:
             provisioner:
               replicaCount: 1
