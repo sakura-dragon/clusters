@@ -11,26 +11,3 @@ spec:
     name: cluster
   path: ./apps/ceph-csi
   prune: true
-  # dependsOn:
-  #   - name: vault
-  # We only have two worker node at this point in time
-  patches:
-    - patch: |-
-        apiVersion: helm.toolkit.fluxcd.io/v2beta1
-        kind: HelmRelease
-        metadata:
-          name: ceph-csi-rbd
-        spec:
-          values:
-            provisioner:
-              replicaCount: 2
-    - patch: |-
-        apiVersion: helm.toolkit.fluxcd.io/v2beta1
-        kind: HelmRelease
-        metadata:
-          name: ceph-csi-cephfs
-        spec:
-          values:
-            provisioner:
-              replicaCount: 2
-
