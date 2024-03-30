@@ -11,3 +11,12 @@ spec:
     name: flux-system
   path: ./common/hashicorp-vault
   prune: true
+---
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/service-account-token
+metadata:
+  name: vault-vault-csi-provider-token
+  namespace: vault
+  annotations:
+    kubernetes.io/service-account.name: vault-vault-csi-provider
