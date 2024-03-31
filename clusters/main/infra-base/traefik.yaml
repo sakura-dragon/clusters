@@ -8,6 +8,6 @@ spec:
   interval: 1h
   sourceRef:
     kind: GitRepository
-    name: cluster
+    name: flux-system
   path: ./apps/traefik
   prune: true
