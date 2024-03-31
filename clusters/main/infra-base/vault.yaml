@@ -25,7 +25,7 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: vault-vars
+        name: cluster-vars
 ---
 apiVersion: v1
 kind: Secret
