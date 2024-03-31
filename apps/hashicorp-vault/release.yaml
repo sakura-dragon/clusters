@@ -21,8 +21,6 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    server:
-      enabled: false
     injector:
       enabled: false
     csi:
