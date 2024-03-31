@@ -1,13 +1,10 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: cluster-vars
+    name: vault-vars
     namespace: flux-system
 data:
     VAULT_ADDR: ENC[AES256_GCM,data:JWdfrrjiTF0Az/07u6cqUZ0ch+zxvy2M+/Wx7lhS/mQif/NTUj4y2sxKvY6lhcLGQmj7wGbtw3sCJuts,iv:bLqHd0ldSi34eRPN4OtnsSLBTemooVKJs/xH781b9Is=,tag:gXOMRjcK4z5z3/bMCZkcqw==,type:str]
-    LOAD_BALANCER_IP_POOL: ENC[AES256_GCM,data:jcG6jZyhyytDNrANpj3BckWBdbnIFl9A22J7nvjVRM6nDOWAA3QchA==,iv:1R/n/TCjHJ7GH4GiLHCqBP3ErMuBw4vtSW7AF1RjG8I=,tag:ygCTqNEaHsbkMT/kq/VRWA==,type:str]
-    PRIVATE_DOMAIN: ENC[AES256_GCM,data:UlZEAyGw3kjA+IS17OKSIW9aVE8QCM2aEaV9Z49gwLo=,iv:fuI1NlBtp+L0b+pRii8puT2fnPLMpvcFroezAFDGDp8=,tag:YHorwP30+bcs4KAx1bHCuA==,type:str]
-    PUBLIC_DOMAIN: ENC[AES256_GCM,data:Wx6vBWCDssIpDGLezOtwoeEgPFOA9Wzh,iv:rlG3hvQDMsNSL5YyEri/zS+Yg8dYmglFQBINN7eQQ38=,tag:lOCxuzgBfIA94kwCXt5U+Q==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -23,8 +20,8 @@ sops:
             R0piNjBhRXhKdktyUFV5azg4QzdlRGMKnvzMucTVNYNKPgohXCSaFAO7Btc1It3b
             OZziSY3um5bx37K3boOj5x642Y+nHi0/dkltbY1MQ6tRZKcBaLvoDg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-03-31T18:35:59Z"
-    mac: ENC[AES256_GCM,data:lIIgwwkCRNQfYrubYX98ORF9JxxLli7wiOQsvIIYbgPrCAGXtEX9ajx7eza+LvIybiEj2A0ZJPw+Hdwpqi708QMMBnSr0st5AeJwz8PRSd+46IupXqfxn1DQxNrro8IArcjJMJ+kerjRJ5mdDCzUHH+l2T1dPAKaMjcJSvIJZXY=,iv:IeipNUpi24YffNVa+4GoAlvp2N1fFedmIdLWZFNiv6Y=,tag:5bICDvorhhDUVDDk3KlU2g==,type:str]
+    lastmodified: "2024-03-31T19:04:47Z"
+    mac: ENC[AES256_GCM,data:gG647Hz3PQkmpOLgXoTy16wGTkCKaSU//x9oXNzuNiJCYgtxyi5rhLTibDp3Qnm+oaCoIB9Kr4u74Omc6qzTvEfJFIP71tVxfi+PavMCM0JYr/UAS3MKypmcgUfRnXhUi9Eg6ToEV7lVpJ9jUomqqD29aJSiOgslExsQsa+nGqU=,iv:Bn6hg+UDC9vClEwIzhy+k9YYR+3uN7YHV65UMYB09pk=,tag:0cwuMBSFNQLCq70gYmeTzA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.8.1
